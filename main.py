@@ -27,10 +27,22 @@ def index():
 
 @app.route('/blog')
 def blog():
-    return render_template('blogs.html')
+
+    blogs = Blog.query.all()
+
+    return render_template('blogs.html',blogs = blogs)
 
 @app.route("/new", methods=['GET','POST'])
 def new_post():
+
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        post = Blog(title,body)
+        db.session.add(post)
+        db.session.commit()    
+        return redirect("/blog")
+
     return render_template('new.html')
 
 if __name__ == '__main__':

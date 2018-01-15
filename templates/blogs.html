@@ -1,4 +1,29 @@
 {% extends 'index.html' %}
 
-<h1>Blogs</h1>
-<a href="/new">Create New Post</a>
+{% block content %}
+
+
+    <h1>Blogs</h1>
+    <a href="/new">Create New Post</a>
+
+    {% if blogs|length == 0 %}
+        <h2>No New Posts Yet</h2>
+    {% else %}
+
+        {% for blog in blogs %}
+        <article>
+				<div class="item">
+					<h3>{{blog.title}}</h3>
+					<p>&nbsp;&nbsp;{{blog.body}}</p>
+                </div>
+        </article>
+        {% endfor %}
+
+
+    {% endif%}
+
+
+
+
+{% endblock %}
+

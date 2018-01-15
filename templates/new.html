@@ -1,4 +1,27 @@
 {% extends 'index.html' %}
 
-<a href="/">Back</a>
-<h1>Create New Post</h1>
+
+
+{% block content %}
+
+    <a href="/">Back</a>
+    <h1>Create New Post</h1>
+    <form action="/new" method="post">
+        <fieldset>
+            <legend>Create New Post</legend>
+            <label for="title">Title</label><br />
+                <div class="input1">
+                    <input type="text" name="title" id="title" value="{{title}}">
+                </div>  
+            <br>    
+            <div class="input1">
+                <textarea name="body" id="body" cols="100" rows="10"></textarea>
+            </div>
+            <input type="submit" value="enter">
+        </fieldset>
+    </form>
+
+
+
+
+{% endblock %}   
