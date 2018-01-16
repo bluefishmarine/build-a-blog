@@ -1,3 +1,29 @@
+main{
+	width:100%;
+	/* text-align: center; */
+}
+
+hr{
+	width: 80%;
+}
+
+h1{
+	color: blue;
+}
+
+h3 {
+	margin-left: 20px;
+}
+
+body{
+	margin: 0;
+	background-color: rgb(208, 219, 237);
+}
+
+img{
+	max-width: 80%;
+}
+
 article{
 	margin: 0 10% 0 10%;
 }
@@ -13,5 +39,10 @@ article p{
 	background-color: rgb(220, 223, 229);
 }
 
-
+footer{
+	text-align: center;
+	background-color: rgb(220, 223, 229);
+	padding: 10px 0 10px 0;
+	margin-top: 100px;
+}
 

@@ -25,11 +25,15 @@ class Blog(db.Model):
 def index():
     return render_template('home.html')
 
-@app.route('/blog')
+@app.route('/blog', methods = ['GET'])
 def blog():
+    if request.args:
+        id = int(request.args.get("id"))   
+        blog = Blog.query.filter_by(id = id).first()
+        print (blog)
+        return render_template("article.html", blog=blog)
 
     blogs = Blog.query.all()
-
     return render_template('blogs.html',blogs = blogs)
 
 @app.route("/new", methods=['GET','POST'])
@@ -40,8 +44,9 @@ def new_post():
         body = request.form['body']
         post = Blog(title,body)
         db.session.add(post)
-        db.session.commit()    
-        return redirect("/blog")
+        db.session.commit()
+        id = post.id    
+        return redirect("/blog?id={0}".format(id))
 
     return render_template('new.html')
 

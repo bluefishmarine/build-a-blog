@@ -9,16 +9,16 @@
     {% if blogs|length == 0 %}
         <h2>No New Posts Yet</h2>
     {% else %}
-
+    <main>
         {% for blog in blogs %}
         <article>
 				<div class="item">
-					<h3>{{blog.title}}</h3>
+					<h3><a href="/blog?id={{blog.id}}">{{blog.title}}</a></h3>
 					<p>&nbsp;&nbsp;{{blog.body}}</p>
                 </div>
         </article>
         {% endfor %}
-
+    </main>
 
     {% endif%}
 
