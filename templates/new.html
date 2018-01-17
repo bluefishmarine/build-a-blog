@@ -12,11 +12,17 @@
             <label for="title">Title</label><br />
                 <div class="input1">
                     <input type="text" name="title" id="title" value="{{title}}">
-                </div>  
+                </div> 
+                {% if error['titleEmpty'] %}
+                    <p class="error">{{ error['noTitle'] }}</p>
+                {% endif %}
             <br>    
             <div class="input1">
-                <textarea name="body" id="body" cols="100" rows="10"></textarea>
+                <textarea name="body" id="body" cols="100" rows="10">{{body}}</textarea>
             </div>
+            {% if error['bodyEmpty'] %}
+                <p class="error">{{ error['noBody'] }}</p>
+            {% endif %}
             <input type="submit" value="enter">
         </fieldset>
     </form>

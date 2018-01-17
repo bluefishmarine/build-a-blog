@@ -36,19 +36,34 @@ def blog():
     blogs = Blog.query.all()
     return render_template('blogs.html',blogs = blogs)
 
+
+
 @app.route("/new", methods=['GET','POST'])
 def new_post():
 
+    error = {
+    "noTitle" : "Title Cannot be Blank",
+    "noBody" : "Body Cannot be Blank",
+    "titleEmpty" : False,
+    "bodyEmpty" : False
+    }
+
     if request.method == 'POST':
         title = request.form['title']
+        if len(title) == 0:
+            error["titleEmpty"] = True
         body = request.form['body']
+        if len(body) == 0:
+            error["bodyEmpty"] = True
+        if error["titleEmpty"] or error["bodyEmpty"]:
+            return render_template('new.html', error = error, title = title, body = body)    
         post = Blog(title,body)
         db.session.add(post)
         db.session.commit()
         id = post.id    
         return redirect("/blog?id={0}".format(id))
 
-    return render_template('new.html')
+    return render_template('new.html', error = error)
 
 if __name__ == '__main__':
     app.run()
